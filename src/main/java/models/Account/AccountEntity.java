@@ -1,6 +1,7 @@
 package models.Account;
 
 import java.time.LocalDateTime;
+import models.User.UserEntity;
 
 public class AccountEntity {
 	private String id;
@@ -9,17 +10,17 @@ public class AccountEntity {
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	private byte[] profilePicture; 
-	private int userId;
+	private UserEntity user;
 	
 	public AccountEntity(String id, String username, String password, LocalDateTime createdAt, LocalDateTime updatedAt,
-			byte[] profilePicture, int userId) {
+			byte[] profilePicture, UserEntity user) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 		this.profilePicture = profilePicture;
-		this.userId = userId;
+		this.user = user;
 	}
 
 	public String getId() {
@@ -70,12 +71,12 @@ public class AccountEntity {
 		this.profilePicture = profilePicture;
 	}
 
-	public int getUserId() {
-		return userId;
+	public UserEntity getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUserId(UserEntity user) {
+		this.user = user;
 	}
 	
 	

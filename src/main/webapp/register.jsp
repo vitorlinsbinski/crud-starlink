@@ -17,19 +17,31 @@
       <h1 class="text-gray-100 text-3xl text-center">
         Faça o seu <strong class="block underline">cadastro</strong>
       </h1>
+      
+		<%
+			String error = request.getParameter("error");
+			if (error != null) {
+			%>
+			    <div class="text-red-300 mt-4 text-small">
+			        Erro: <%= error %>
+			    </div>
+			<%
+		}
+		%>
 
       <form
-        method="get"
-        action="#"
+        method="post"
+        action="register"
         id="login-form"
         class="w-full flex flex-col gap-4 mt-5">
         <div class="flex flex-col gap-2">
-          <label for="nome" class="text-lg text-neutral-200 font-semibold"
+          <label for="name" class="text-lg text-neutral-200 font-semibold"
             >Nome</label
           >
           <input
             type="text"
-            id="nome"
+            name="name"
+            id="name"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
             placeholder="Digite seu nome"
             required />
@@ -41,6 +53,7 @@
           >
           <input
             type="email"
+            name="email"
             id="email"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
             placeholder="Digite sua email"
@@ -48,12 +61,13 @@
         </div>
 
         <div class="flex flex-col gap-2">
-          <label for="telefone" class="text-lg text-neutral-200 font-semibold"
+          <label for="phone" class="text-lg text-neutral-200 font-semibold"
             >Telefone</label
           >
           <input
             type="tel"
-            id="telefone"
+            name="phone"
+            id="phone"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
             placeholder="Digite sua telefone" />
         </div>
@@ -64,6 +78,7 @@
           >
           <input
             type="text"
+            name="address"
             id="address"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
             placeholder="Digite seu endereço residencial" />
@@ -77,6 +92,8 @@
           >
           <input
             type="text"
+            
+            name="username"
             id="username"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
             placeholder="Digite seu nome de usuário"
@@ -89,6 +106,7 @@
           >
           <input
             type="password"
+            name="password"
             id="password"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
             placeholder="Digite uma senha"
@@ -96,12 +114,13 @@
         </div>
 
         <div class="flex flex-col gap-2">
-          <label for="birthday" class="text-lg text-neutral-200 font-semibold"
+          <label for="birthdate" class="text-lg text-neutral-200 font-semibold"
             >Data de nascimento</label
           >
           <input
             type="date"
-            id="birthday"
+            name="birthdate"
+            id="birthdate"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400" />
         </div>
 
@@ -111,6 +130,7 @@
           >
           <input
             type="text"
+            name="gender"
             id="gender"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
             placeholder="Digite seu gênero" />

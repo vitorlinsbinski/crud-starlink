@@ -5,17 +5,19 @@ import java.time.LocalDate;
 public class UserEntity {
 	private int id;
 	private String fullName;
+	private String email;
 	private String phone;
 	private String residentialAddress;
-	private LocalDate birthday;
+	private LocalDate birthdate;
 	private String gender;
 	
-	public UserEntity(int id, String fullName, String phone, String residentialAddress, LocalDate birthday, String gender) {
+	public UserEntity(int id, String fullName, String email, String phone, String residentialAddress, LocalDate birthday, String gender) {
 		this.id = id;
 		this.fullName = fullName;
+		this.email = email;
 		this.phone = phone;
 		this.residentialAddress = residentialAddress;
-		this.birthday = birthday;
+		this.birthdate = birthday;
 		this.gender = gender;
 	}
 
@@ -34,6 +36,14 @@ public class UserEntity {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getPhone() {
 		return phone;
@@ -51,12 +61,12 @@ public class UserEntity {
 		this.residentialAddress = residentialAddress;
 	}
 
-	public LocalDate getBirthday() {
-		return birthday;
+	public LocalDate getBirthdate() {
+		return birthdate;
 	}
 
-	public void setBirthday(LocalDate birthday) {
-		this.birthday = birthday;
+	public void setBirthdate(LocalDate birthday) {
+		this.birthdate = birthday;
 	}
 
 	public String getGender() {

@@ -8,30 +8,24 @@ public class ConnectionFactory {
 	private final static String USER = "root";
 	private final static String PASSWORD = "admin";
 	private final static String PORT = "3306";
-	private final static String DATABASE = "mydatabase";  
+	private final static String DATABASE = "starlink_db";  
     private final static String HOST = "localhost";    
 	
 	
-	public Connection connect() {
+	public Connection getConnection() {
 		try {
-			StringBuilder urlConnection = new StringBuilder();
-
-	        urlConnection.append("jdbc:mysql://")
-	                     .append(HOST)
-	                     .append(":")
-	                     .append(PORT)
-	                     .append("/")
-	                     .append(DATABASE)
-	                     .append("?user=")
-	                     .append(USER)
-	                     .append("&password=")
-	                     .append(PASSWORD)
-	                     .append("?useSSL=false&serverTimezone=UTC");  	   
+			String baseURL = "jdbc:mysql://" + HOST + ':' + PORT + "/" + DATABASE;
+			
+			System.out.println("URL: " + baseURL);
 	        
-			Connection connection = DriverManager.getConnection(urlConnection.toString());
+			Class.forName("com.mysql.cj.jdbc.Driver"); 
+			
+			Connection connection = DriverManager.getConnection(baseURL, USER, PASSWORD);
 			
 			return connection;
 		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		} catch (ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}
 
