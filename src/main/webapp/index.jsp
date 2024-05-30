@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -18,7 +21,7 @@
       <div class="pb-10">
         <div>
           <h1 class="text-gray-100 text-3xl">
-            Bem-vindo Ã  <strong class="block underline">Starlink</strong>
+            Bem-vindo à <strong class="block underline">Starlink</strong>
           </h1>
 
           <span class="text-neutral-400 text-base mt-4 inline-block"
@@ -32,14 +35,15 @@
           id="login-form"
           class="w-full max-w-[344px] mt-8 flex flex-col gap-5">
           <div class="flex flex-col gap-2">
-            <label for="email" class="text-lg text-neutral-200 font-semibold"
-              >Email</label
+            <label for="username" class="text-lg text-neutral-200 font-semibold"
+              >Nome de usuário</label
             >
             <input
               type="text"
-              id="email"
+              id="username"
               class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
-              placeholder="Digite seu email" />
+              placeholder="Digite seu nome de usuário" 
+              required/>
           </div>
 
           <div class="flex flex-col gap-2">
@@ -50,7 +54,8 @@
               type="password"
               id="password"
               class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
-              placeholder="Digite sua senha" />
+              placeholder="Digite sua senha" 
+              required/>
           </div>
 
           <button
@@ -65,7 +70,7 @@
 
       <div class="flex flex-col w-full max-w-[344px]">
         <p class="text-neutral-200 text-base mt-4 inline-block">
-          NÃ£o tem uma conta?
+          Não tem uma conta?
         </p>
 
         <a
