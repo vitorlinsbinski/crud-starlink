@@ -30,8 +30,8 @@
         </div>
 
         <form
-          method="get"
-          action="#"
+          method="post"
+          action="login"
           id="login-form"
           class="w-full max-w-[344px] mt-8 flex flex-col gap-5">
           <div class="flex flex-col gap-2">
@@ -40,6 +40,7 @@
             >
             <input
               type="text"
+              name = "username"
               id="username"
               class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
               placeholder="Digite seu nome de usuário" 
@@ -52,6 +53,7 @@
             >
             <input
               type="password"
+              name = "password"
               id="password"
               class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
               placeholder="Digite sua senha" 

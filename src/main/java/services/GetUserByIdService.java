@@ -14,7 +14,7 @@ public class GetUserByIdService {
         this.connection = new ConnectionFactory();
     }
     
-    public UserEntity execute(String id) {
+    public UserEntity execute(int id) {
         Connection dbConnection = this.connection.getConnection();
         
         try {

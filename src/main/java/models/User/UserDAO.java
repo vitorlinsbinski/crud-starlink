@@ -17,12 +17,12 @@ public class UserDAO implements UserRepository {
 	}
 	
 	@Override
-	public UserEntity getUserById(String id) {
+	public UserEntity getUserById(int id) {
 		String sql = "SELECT * from usuario WHERE id = ?";
 		
 		try {
 			PreparedStatement ps = this.connection.prepareStatement(sql);
-			ps.setString(1, id);
+			ps.setInt(1, id);
 			
 			ResultSet rs = ps.executeQuery();
 			

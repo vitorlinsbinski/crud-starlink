@@ -9,10 +9,10 @@ import models.Account.AccountEntity;
 import models.User.UserDAO;
 import models.User.UserEntity;
 
-public class GetAccountByUsername {
+public class GetAccountByUsernameService {
     private ConnectionFactory connection;
     
-    public GetAccountByUsername() {
+    public GetAccountByUsernameService() {
         this.connection = new ConnectionFactory();
     }
     

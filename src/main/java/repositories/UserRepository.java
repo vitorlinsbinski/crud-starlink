@@ -3,7 +3,7 @@ package repositories;
 import models.User.UserEntity;
 
 public interface UserRepository {
-	UserEntity getUserById(String id);
+	UserEntity getUserById(int id);
 	
 	UserEntity getUserByEmail(String email);
 	

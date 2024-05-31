@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
 		try { 
 			this.createAccountService.execute(user, account);
 			
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("login.jsp");
 		} catch (UserAlreadyExistsExepction e) {
 			 String encodedError = URLEncoder.encode(e.getMessage(), "UTF-8");
 			 response.sendRedirect("register.jsp?error=" + encodedError);

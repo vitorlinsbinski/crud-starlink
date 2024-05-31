@@ -13,12 +13,12 @@ import models.User.UserEntity;
 public class CreateAccountService {
 	private ConnectionFactory connection;
 	private GetUserByEmailService getUserByEmailService;
-	private GetAccountByUsername getAccountByUsername;
+	private GetAccountByUsernameService getAccountByUsername;
 	
 	public CreateAccountService() {
 		this.connection = new ConnectionFactory();
 		this.getUserByEmailService = new GetUserByEmailService();
-		this.getAccountByUsername = new GetAccountByUsername();
+		this.getAccountByUsername = new GetAccountByUsernameService();
 	}
 	
 	public void execute(UserEntity user, AccountEntity account) {

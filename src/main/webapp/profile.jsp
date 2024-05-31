@@ -14,7 +14,16 @@
   <body class="w-full">
     <div
       class="w-full max-w-[353px] mx-auto flex flex-col items-center justify-center py-6">
-      <div class="flex flex-col items-center justify-center gap-3 mb-5">
+      <a href = "home" class = "flex items-center justify-center">
+      	<img alt="" src="./images/logo-2.svg">
+      </a>
+      
+      <div class="w-full h-px bg-neutral-700 my-4"></div>
+      
+      <h2 class = "text-2xl text-neutral-200 font-bold">Perfil</h2>
+     
+      
+      <div class="flex flex-col items-center justify-center gap-3 mb-5 mt-4">
         <div class="w-8 h-8 flex items-center justify-center">
           <img src="./images/user-icon.svg" alt="user icon" class="w-full" />
         </div>
@@ -28,7 +37,7 @@
             >Nome</label
           >
           <input
-            value="Vitor Linsbinski de Oliveira"
+            value="<%= request.getAttribute("name") %>"
             type="text"
             id="nome"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
@@ -41,7 +50,7 @@
             >Email</label
           >
           <input
-            value="vitor.linsbinski@hotmail.com"
+            value="<%= request.getAttribute("email") %>"
             type="email"
             id="email"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
@@ -54,7 +63,7 @@
             >Telefone</label
           >
           <input
-            value="(66) 99660-7293"
+            value="<%= request.getAttribute("phone") %>"
             type="tel"
             id="telefone"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
@@ -66,7 +75,7 @@
             >Endereço residencial</label
           >
           <input
-            value="Avenida Julio Campos N 1488"
+            value="<%= request.getAttribute("address") %>"
             type="text"
             id="address"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
@@ -80,7 +89,7 @@
             >Nome de usuário</label
           >
           <input
-            value="vitorlinsbinski"
+            value="<%= request.getAttribute("username") %>"
             type="text"
             id="username"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
@@ -101,13 +110,13 @@
         </div>
 
         <div class="flex flex-col gap-2">
-          <label for="birthday" class="text-lg text-neutral-200 font-semibold"
+          <label for="birthdate" class="text-lg text-neutral-200 font-semibold"
             >Data de nascimento</label
           >
           <input
-            value="2004-03-23"
+            value="<%= request.getAttribute("birthdate") %>"
             type="date"
-            id="birthday"
+            id="birthdate"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400" />
         </div>
 
@@ -116,7 +125,7 @@
             >Gênero</label
           >
           <input
-            value="Masculino"
+            value="<%= request.getAttribute("gender") %>"
             type="text"
             id="gender"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
