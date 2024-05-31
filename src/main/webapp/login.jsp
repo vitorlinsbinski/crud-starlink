@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="./styles/styles.css" />
     <link rel="stylesheet" href="./styles/styles-home.css" />
   </head>
@@ -59,6 +60,19 @@
               placeholder="Digite sua senha" 
               required/>
           </div>
+          
+          <%
+			String error = request.getParameter("error");
+			if (error != null) {
+			%>
+			    <div class="text-red-300 mt-2 text-base flex gap-2 flex items-center">
+			    	<i class="ph ph-warning-octagon" class = "w-full h-full"></i>
+
+			        Erro: <%= error %>
+			    </div>
+			<%
+		}
+		%>
 
           <button
             class="bg-neutral-200 h-[48px] font-bold mt-3 hover:bg-neutral-300 transition-all"

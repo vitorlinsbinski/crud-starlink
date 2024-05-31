@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import database.ConnectionFactory;
+import exceptions.ResourceNotFoundException;
 import exceptions.UserCredentialsDoesNotMatch;
 import models.Account.AccountDAO;
 import models.Account.AccountEntity;
 import models.User.UserDAO;
 import repositories.AccountRepository;
+import utils.Hashing;
 
 public class AuthenticateService {
     private ConnectionFactory connection;
@@ -23,10 +25,16 @@ public class AuthenticateService {
         try {
         	AccountEntity account = new AccountDAO(dbConnection).getAccountByUsername(username);
         	
-        	boolean doesPasswordMatch = account.getPassword().equals(password);
+        	if(account == null) {
+        		throw new ResourceNotFoundException("Usuário não encontrado.");
+        	}
+        	
+        	String hashedPassword = Hashing.hashPassword(password);
+        	
+        	boolean doesPasswordMatch = account.getPassword().equals(hashedPassword);
        
-            if(account == null || !doesPasswordMatch) {
-                throw new UserCredentialsDoesNotMatch("Credenciais do usuário fornecidas não correspondem.");
+            if(!doesPasswordMatch) {
+                throw new UserCredentialsDoesNotMatch("Credenciais inválidas.");
             }
             
             return account;

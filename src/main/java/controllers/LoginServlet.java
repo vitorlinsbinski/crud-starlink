@@ -14,9 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import exceptions.ResourceNotFoundException;
 import exceptions.UserCredentialsDoesNotMatch;
 import models.Account.AccountEntity;
 import services.AuthenticateService;
+import utils.Hashing;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -35,7 +37,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user", account);
             
             response.sendRedirect(request.getContextPath() + "/home");
-        } catch (UserCredentialsDoesNotMatch e) {
+        } catch (UserCredentialsDoesNotMatch | ResourceNotFoundException e) {
         	String encodedError = URLEncoder.encode(e.getMessage(), "UTF-8");
 			 response.sendRedirect("login.jsp?error=" + encodedError);
         }

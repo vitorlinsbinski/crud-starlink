@@ -28,7 +28,7 @@
           <img src="./images/user-icon.svg" alt="user icon" class="w-full" />
         </div>
 
-        <span class="text-md font-bold text-neutral-200">vitorlinsbinski</span>
+        <span class="text-md font-bold text-neutral-200"><%= request.getAttribute("username") %></span>
       </div>
 
       <form action="" class="w-full flex flex-col gap-3">

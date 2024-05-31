@@ -15,6 +15,7 @@ import exceptions.UserAlreadyExistsExepction;
 import models.Account.AccountEntity;
 import models.User.UserEntity;
 import services.CreateAccountService;
+import utils.Hashing;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -37,7 +38,10 @@ public class RegisterServlet extends HttpServlet {
         LocalDate birthdate = LocalDate.parse(birthdateString, formatter);
 		
 		UserEntity user = new UserEntity(name, email, phone, address, birthdate, gender);
-		AccountEntity account = new AccountEntity(username, password, null, null, null, user.getId());
+		
+		String hashedPassword = Hashing.hashPassword(password);
+		
+		AccountEntity account = new AccountEntity(username, hashedPassword, null, null, null, user.getId());
 		
 		try { 
 			this.createAccountService.execute(user, account);
