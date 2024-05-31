@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perfil</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="./styles/styles.css" />
     <link rel="stylesheet" href="./styles/styles-profile.css" />
   </head>
@@ -30,14 +31,29 @@
 
         <span class="text-md font-bold text-neutral-200"><%= request.getAttribute("username") %></span>
       </div>
+      
+      <%
+			String error = request.getParameter("error");
+			if (error != null) {
+			%>
+			    <div class="text-red-300 py-4 text-base flex gap-2 items-center">
+			    	<i class="ph ph-warning-octagon" class = "w-full h-full"></i>
 
-      <form action="" class="w-full flex flex-col gap-3">
+			        Erro: <%= error %>
+			    </div>
+			<%
+		}
+		%>
+      
+
+      <form method="post" action="update-profile" class="w-full flex flex-col gap-3">
         <div class="flex flex-col gap-2">
           <label for="nome" class="text-lg text-neutral-200 font-semibold"
             >Nome</label
           >
           <input
             value="<%= request.getAttribute("name") %>"
+            name="name"
             type="text"
             id="nome"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
@@ -51,6 +67,7 @@
           >
           <input
             value="<%= request.getAttribute("email") %>"
+            name="email"
             type="email"
             id="email"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
@@ -64,6 +81,7 @@
           >
           <input
             value="<%= request.getAttribute("phone") %>"
+            name="phone"
             type="tel"
             id="telefone"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
@@ -76,6 +94,7 @@
           >
           <input
             value="<%= request.getAttribute("address") %>"
+            name="address"
             type="text"
             id="address"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
@@ -90,6 +109,7 @@
           >
           <input
             value="<%= request.getAttribute("username") %>"
+            name="username"
             type="text"
             id="username"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
@@ -103,6 +123,7 @@
           >
           <input
             type="password"
+            name="password"
             id="password"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"
             placeholder="Digite sua nova senha"
@@ -115,6 +136,7 @@
           >
           <input
             value="<%= request.getAttribute("birthdate") %>"
+            name="birthdate"
             type="date"
             id="birthdate"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400" />
@@ -126,6 +148,7 @@
           >
           <input
             value="<%= request.getAttribute("gender") %>"
+            name="gender"
             type="text"
             id="gender"
             class="h-[48px] bg-neutral-900 border border-neutral-700 border-neutral-300 px-5 text-sm text-neutral-200 placeholder:text-neutral-400"

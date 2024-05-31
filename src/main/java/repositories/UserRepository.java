@@ -10,4 +10,6 @@ public interface UserRepository {
 	UserEntity createUser(UserEntity user);
 	
 	void deleteUser(int userId);
+	
+	void updateUser(UserEntity user);
 }

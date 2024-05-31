@@ -34,13 +34,11 @@ public class RegisterServlet extends HttpServlet {
         String gender = request.getParameter("gender");
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        
         LocalDate birthdate = LocalDate.parse(birthdateString, formatter);
-		
+        
 		UserEntity user = new UserEntity(name, email, phone, address, birthdate, gender);
 		
 		String hashedPassword = Hashing.hashPassword(password);
-		
 		AccountEntity account = new AccountEntity(username, hashedPassword, null, null, null, user.getId());
 		
 		try { 

@@ -122,4 +122,33 @@ public class UserDAO implements UserRepository {
 		
 	}
 
+	@Override
+	public void updateUser(UserEntity user) {
+		String sql = "UPDATE usuario SET nome_completo = ?, email = ?, telefone = ?, "
+				+ "endereco_residencial = ?, data_nascimento = ?, genero = ? WHERE id = ?";
+		
+		try {
+			PreparedStatement ps = this.connection.prepareStatement(sql);
+			
+			ps.setString(1, user.getFullName());
+	        ps.setString(2, user.getEmail());
+	        ps.setString(3, user.getPhone());
+	        ps.setString(4, user.getResidentialAddress());
+	        ps.setDate(5, Date.valueOf(user.getBirthdate()));
+	        ps.setString(6, user.getGender());
+	        ps.setInt(7, user.getId());
+	        
+			int rowsAffected = ps.executeUpdate();
+			
+			ps.close();
+			
+			if (rowsAffected == 0) {
+	            throw new SQLException("Nenhuma linha afetada, atualização falhou.");
+	        }
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+
 }
