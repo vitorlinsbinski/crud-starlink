@@ -4,30 +4,40 @@ import java.time.LocalDateTime;
 import models.User.UserEntity;
 
 public class AccountEntity {
-	private String id;
+	private int id;
 	private String username;
 	private String password;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	private byte[] profilePicture; 
-	private UserEntity user;
+	private int userId;
 	
-	public AccountEntity(String id, String username, String password, LocalDateTime createdAt, LocalDateTime updatedAt,
-			byte[] profilePicture, UserEntity user) {
+	public AccountEntity(int id, String username, String password, LocalDateTime createdAt, LocalDateTime updatedAt,
+			byte[] profilePicture, int userId) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 		this.profilePicture = profilePicture;
-		this.user = user;
+		this.userId = userId;
+	}
+	
+	public AccountEntity(String username, String password, LocalDateTime createdAt, LocalDateTime updatedAt,
+			byte[] profilePicture, int userId) {
+		this.username = username;
+		this.password = password;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+		this.profilePicture = profilePicture;
+		this.userId = userId;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -71,12 +81,12 @@ public class AccountEntity {
 		this.profilePicture = profilePicture;
 	}
 
-	public UserEntity getUser() {
-		return user;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUserId(UserEntity user) {
-		this.user = user;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 	

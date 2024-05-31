@@ -20,6 +20,15 @@ public class UserEntity {
 		this.birthdate = birthday;
 		this.gender = gender;
 	}
+	
+	public UserEntity(String fullName, String email, String phone, String residentialAddress, LocalDate birthday, String gender) {
+		this.fullName = fullName;
+		this.email = email;
+		this.phone = phone;
+		this.residentialAddress = residentialAddress;
+		this.birthdate = birthday;
+		this.gender = gender;
+	}
 
 	public int getId() {
 		return id;

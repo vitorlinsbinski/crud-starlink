@@ -74,7 +74,7 @@
         </p>
 
         <a
-          href="register.html"
+          href="register.jsp"
           class="h-[48px] font-bold mt-3 transition-all text-neutral-200 border border-neutral-300 hover:bg-neutral-900 flex items-center justify-center"
           >Cadastrar</a
         >

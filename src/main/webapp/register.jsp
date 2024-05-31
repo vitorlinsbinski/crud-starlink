@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="./styles/styles.css" />
     <link rel="stylesheet" href="./styles/styles-register.css" />
   </head>
@@ -22,7 +23,9 @@
 			String error = request.getParameter("error");
 			if (error != null) {
 			%>
-			    <div class="text-red-300 mt-4 text-small">
+			    <div class="text-red-300 mt-4 text-base flex items-center justify-center gap-2">
+			    	<i class="ph ph-warning-octagon" class = "w-full h-full"></i>
+
 			        Erro: <%= error %>
 			    </div>
 			<%
