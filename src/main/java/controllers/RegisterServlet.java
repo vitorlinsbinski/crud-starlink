@@ -14,12 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import exceptions.UserAlreadyExistsExepction;
 import models.Account.AccountEntity;
 import models.User.UserEntity;
-import services.CreateAccountService;
+import services.CreateUserAccountService;
 import utils.Hashing;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-	private CreateAccountService createAccountService = new CreateAccountService();
+	private CreateUserAccountService createAccountService = new CreateUserAccountService();
 	
 	private static final long serialVersionUID = 1L;
 
@@ -36,13 +36,14 @@ public class RegisterServlet extends HttpServlet {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate birthdate = LocalDate.parse(birthdateString, formatter);
         
-		UserEntity user = new UserEntity(name, email, phone, address, birthdate, gender);
+		UserEntity newUser = new UserEntity(name, email, phone, address, birthdate, gender);
 		
 		String hashedPassword = Hashing.hashPassword(password);
-		AccountEntity account = new AccountEntity(username, hashedPassword, null, null, null, user.getId());
+		
+		AccountEntity newAccount = new AccountEntity(username, hashedPassword, null, null, null, newUser.getId());
 		
 		try { 
-			this.createAccountService.execute(user, account);
+			this.createAccountService.execute(newUser, newAccount);
 			
 			response.sendRedirect("login.jsp");
 		} catch (UserAlreadyExistsExepction e) {

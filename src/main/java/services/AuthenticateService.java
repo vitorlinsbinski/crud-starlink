@@ -26,7 +26,7 @@ public class AuthenticateService {
         	AccountEntity account = new AccountDAO(dbConnection).getAccountByUsername(username);
         	
         	if(account == null) {
-        		throw new ResourceNotFoundException("Usuário não encontrado.");
+        		throw new ResourceNotFoundException("Conta não encontrada.");
         	}
         	
         	String hashedPassword = Hashing.hashPassword(password);

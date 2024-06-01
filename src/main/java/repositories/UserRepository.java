@@ -9,7 +9,7 @@ public interface UserRepository {
 	
 	UserEntity createUser(UserEntity user);
 	
-	void deleteUser(int userId);
+	void deleteUser(int id);
 	
 	void updateUser(UserEntity user);
 }

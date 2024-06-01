@@ -10,12 +10,12 @@ import models.Account.AccountEntity;
 import models.User.UserDAO;
 import models.User.UserEntity;
 
-public class CreateAccountService {
+public class CreateUserAccountService {
 	private ConnectionFactory connection;
 	private GetUserByEmailService getUserByEmailService;
 	private GetAccountByUsernameService getAccountByUsername;
 	
-	public CreateAccountService() {
+	public CreateUserAccountService() {
 		this.connection = new ConnectionFactory();
 		this.getUserByEmailService = new GetUserByEmailService();
 		this.getAccountByUsername = new GetAccountByUsernameService();
@@ -23,20 +23,37 @@ public class CreateAccountService {
 	
 	public void execute(UserEntity user, AccountEntity account) {
 	    Connection dbConnection = this.connection.getConnection();
+	    AccountDAO accountDAO = new AccountDAO(dbConnection);
+	    UserDAO userDAO = new UserDAO(dbConnection);
 	    
 	    try {
 	        UserEntity userOnDatabase = getUserByEmailService.execute(user.getEmail());
 	        AccountEntity accountOnDatabase = getAccountByUsername.execute(account.getUsername());
 	        
-	        if (userOnDatabase != null || accountOnDatabase != null) {
-	            throw new UserAlreadyExistsExepction("Email ou nome de usuário já registrado.");
-	        }
+	        if (userOnDatabase == null && accountOnDatabase == null) {
+                UserEntity newUser = userDAO.createUser(user);
+                
+                account.setUserId(newUser.getId());
+                
+                accountDAO.createAccount(account);
+            } else if (userOnDatabase != null && accountOnDatabase == null) {
+            	if(user.getEmail() == userOnDatabase.getEmail()) {
+            		throw new UserAlreadyExistsExepction("Email já registrado.");
+            	}
+            	
+            	System.out.println("Usuário ID para ser atualizado: " + user.getId());
+            	
+            	user.setId(userOnDatabase.getId());
+            	
+            	userDAO.updateUser(user);
+            	
+                account.setUserId(userOnDatabase.getId());
+                
+                accountDAO.createAccount(account);
+            } else {
+                throw new UserAlreadyExistsExepction("Email ou nome de usuário já registrado.");
+            }
 	        
-	        UserEntity newUser = new UserDAO(dbConnection).createUser(user);
-	        
-	        account.setUserId(newUser.getId());
-	        
-	        new AccountDAO(dbConnection).createAccount(account);
 	    } finally {
 	        try {
 	            if (dbConnection != null && !dbConnection.isClosed()) {

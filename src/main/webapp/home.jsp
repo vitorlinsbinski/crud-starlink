@@ -12,22 +12,34 @@
 <title>Dashboard</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="./styles/styles.css" />
+<script>
+	function confirmLogout(event) {
+		event.preventDefault();
+		const userConfirmed = confirm("Você tem certeza que deseja sair?");
+		if (userConfirmed) {
+			window.location.href = event.target.href;
+		}
+	}
+</script>
 </head>
 <body class="h-screen flex items-center justify-center">
 	<div
 		class="w-full max-w-[353px] mx-auto flex flex-col items-center justify-center my-auto py-6">
-		<% 
-            HttpSession sessionObj = request.getSession();
-            AccountEntity user = (AccountEntity) sessionObj.getAttribute("user");
-            if (user != null) {
-        %>
-        <a href="profile" class="flex items-center justify-center gap-2 mb-6 group">
-            <img src="./images/user-icon.svg" alt="user-icon" />
-            <strong class="text-lg text-slate-200 group-hover:text-slate-300 group-hover:underline transition-all">
-                <%= user.getUsername() %>
-            </strong>
-        </a>
-        <% } %>
+		<%
+		HttpSession sessionObj = request.getSession();
+		AccountEntity user = (AccountEntity) sessionObj.getAttribute("user");
+		if (user != null) {
+		%>
+		<a href="profile"
+			class="flex items-center justify-center gap-2 mb-6 group"> <img
+			src="./images/user-icon.svg" alt="user-icon" /> <strong
+			class="text-lg text-slate-200 group-hover:text-slate-300 group-hover:underline transition-all">
+				<%=user.getUsername()%>
+		</strong>
+		</a>
+		<%
+		}
+		%>
 
 		<div class="flex items-center justify-center flex-col gap-6">
 			<div>
@@ -102,8 +114,8 @@
 							<img src="./images/credit-card-icon.svg" alt="credit-card icon" />
 						</div>
 
-						<span class="text-base text-slate-300">Pagamentos
-							e transações</span>
+						<span class="text-base text-slate-300">Pagamentos e
+							transações</span>
 					</div>
 
 					<div>
@@ -130,11 +142,13 @@
 			</li>
 		</ul>
 
-		<a class="flex items-center gap-2 mt-10 group cursor-pointer" href = "logout">
+		<a href="logout"
+			class="flex items-center gap-2 mt-10 group cursor-pointer">
 			<img src="./images/log-out-icon.svg" alt="log-out icon" /> <span
-				class="text-red-300 group-hover:text-red-400 transition-all">Log
-				out</span>
+			class="text-red-300 group-hover:text-red-400 transition-all">Log-out</span>
 		</a>
+
+
 	</div>
 </body>
 </html>

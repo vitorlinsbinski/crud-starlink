@@ -114,7 +114,18 @@ public class AccountDAO implements AccountRepository {
 
 	@Override
 	public void deleteAccount(int id) {
-		// TODO Auto-generated method stub
+		String sql = "DELETE FROM conta WHERE id = ?";
+		
+		try {
+			PreparedStatement ps = this.connection.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			
+			ps.execute();
+			ps.close();
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
 		
 	}
 

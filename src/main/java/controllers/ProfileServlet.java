@@ -27,12 +27,11 @@ public class ProfileServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		AccountEntity account = (AccountEntity) session.getAttribute("user");
 		
-		System.out.println("Conta encontrada nos cookies: " + account);
-		
 		if(account != null) {
 			UserEntity user = this.getUserByIdService.execute(account.getUserId());
 			
 			 request.setAttribute("username", account.getUsername());
+			 
 	         request.setAttribute("name", user.getFullName());
 	         request.setAttribute("email", user.getEmail());
 	         request.setAttribute("phone", user.getPhone());

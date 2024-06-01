@@ -50,13 +50,13 @@ public class UpdateProfileServlet extends HttpServlet {
         int userIdOnDatabase = this.getUserByIdService.execute(sessionAccount.getUserId()).getId();
         int accountIdOnDatabase = this.getAccountByUsernameService.execute(sessionAccount.getUsername()).getId();
         
-        UserEntity user = new UserEntity(userIdOnDatabase, name, email, phone, address, birthdate, gender);
+        UserEntity updatedUser = new UserEntity(userIdOnDatabase, name, email, phone, address, birthdate, gender);
         
-        AccountEntity account = new AccountEntity(accountIdOnDatabase, username, hashedPassword, 
+        AccountEntity updatedAccount = new AccountEntity(accountIdOnDatabase, username, hashedPassword, 
                 null, null, null, userIdOnDatabase);
         
         try { 
-            this.updateAccountService.execute(user, account);
+            this.updateAccountService.execute(updatedUser, updatedAccount);
             
             session.invalidate();
             response.sendRedirect("login.jsp");

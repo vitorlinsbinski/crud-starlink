@@ -117,9 +117,19 @@ public class UserDAO implements UserRepository {
 
 
 	@Override
-	public void deleteUser(int userId) {
-		// TODO Auto-generated method stub
+	public void deleteUser(int id) {
+		String sql = "DELETE FROM usuario WHERE id = ?";
 		
+		try {
+			PreparedStatement ps = this.connection.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			
+			ps.execute();
+			ps.close();
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
