@@ -37,12 +37,6 @@ public class CreateUserAccountService {
                 
                 accountDAO.createAccount(account);
             } else if (userOnDatabase != null && accountOnDatabase == null) {
-            	if(user.getEmail() == userOnDatabase.getEmail()) {
-            		throw new UserAlreadyExistsExepction("Email já registrado.");
-            	}
-            	
-            	System.out.println("Usuário ID para ser atualizado: " + user.getId());
-            	
             	user.setId(userOnDatabase.getId());
             	
             	userDAO.updateUser(user);
