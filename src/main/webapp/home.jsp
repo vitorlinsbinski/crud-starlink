@@ -56,10 +56,10 @@
 		<ul class="w-full mt-4 flex flex-col gap-4">
 			<li
 				class="w-full h-[50px] bg-neutral-900 border border-neutral-700 px-4 hover:bg-neutral-800 transition-all cursor-pointer flex items-center">
-				<a href="" class="flex items-center justify-between w-full">
+				<a href="get-online-navigation-report" class="flex items-center justify-between w-full">
 					<div class="flex items-center gap-3">
 						<div>
-							<img src="./images/browser-icon.svg" alt="browser icon" />
+							<img src="./images/wifi-icon.svg" alt="wifi icon" />
 						</div>
 
 						<span class="text-base text-slate-300">Navegação online</span>
@@ -143,8 +143,8 @@
 		</ul>
 
 		<a href="logout"
-			class="flex items-center gap-2 mt-10 group cursor-pointer">
-			<img src="./images/log-out-icon.svg" alt="log-out icon" /> <span
+			class="flex items-center gap-2 mt-10 group cursor-pointer"> <img
+			src="./images/log-out-icon.svg" alt="log-out icon" /> <span
 			class="text-red-300 group-hover:text-red-400 transition-all">Log-out</span>
 		</a>
 

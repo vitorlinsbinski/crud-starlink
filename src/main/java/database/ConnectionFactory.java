@@ -15,9 +15,7 @@ public class ConnectionFactory {
 	public Connection getConnection() {
 		try {
 			String baseURL = "jdbc:mysql://" + HOST + ':' + PORT + "/" + DATABASE;
-			
-			System.out.println("URL: " + baseURL);
-	        
+
 			Class.forName("com.mysql.cj.jdbc.Driver"); 
 			
 			Connection connection = DriverManager.getConnection(baseURL, USER, PASSWORD);

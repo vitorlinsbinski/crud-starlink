@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="localizacao" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4b246d11-7417-412a-ac20-35662accbdee">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySql-ClassicModels"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="ParameterUserId" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT 
+    u.nome_completo, 
+    l.latitude, 
+    l.longitude,  
+    s.criado_em
+FROM 
+    localizacao l 
+JOIN 
+    sessao s
+    ON 
+    l.sessao_id_1 = s.id
+JOIN 
+    usuario u
+ON 
+    l.usuario_id_2 = u.id
+ WHERE u.id = $P{ParameterUserId}]]>
+	</queryString>
+	<field name="nome_completo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome_completo"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome_completo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuario"/>
+	</field>
+	<field name="latitude" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="latitude"/>
+		<property name="com.jaspersoft.studio.field.label" value="latitude"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="localizacao"/>
+	</field>
+	<field name="longitude" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="longitude"/>
+		<property name="com.jaspersoft.studio.field.label" value="longitude"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="localizacao"/>
+	</field>
+	<field name="criado_em" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="criado_em"/>
+		<property name="com.jaspersoft.studio.field.label" value="criado_em"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sessao"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="200" y="27" width="270" height="35" uuid="5ce81711-9818-450c-93e8-5f1ad0970e3e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Yu Gothic Light" size="16"/>
+				</textElement>
+				<text><![CDATA[LOCALIZAÇÃO GEOGRÁFICA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="7" width="50" height="20" uuid="fc660637-925e-4701-b5a2-5577642a4293"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="70" y="-6" width="140" height="89" uuid="821e6cca-4357-497c-a153-5e41db5f9847"/>
+				<imageExpression><![CDATA["C:/Users/User/Downloads/starlink_logo.png"]]></imageExpression>
+			</image>
+			<textField evaluationTime="Report">
+				<reportElement x="490" y="7" width="45" height="20" uuid="f0625ca8-c2a5-4281-bfe5-ac28a3da9089"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="55" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="25" width="160" height="15" uuid="1fbdeec3-4543-48a2-829e-b9b32600cd1c"/>
+				<textFieldExpression><![CDATA[$F{nome_completo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="10" width="160" height="15" uuid="4c9b30a4-455d-490d-ab15-c8fef83b9bdc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome Completo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="320" y="25" width="100" height="15" uuid="c793033f-fcaf-4743-ab06-2fc16be8d0fa"/>
+				<textFieldExpression><![CDATA[$F{latitude}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="10" width="100" height="15" uuid="f5e1d568-440c-4808-9ffb-5862b2d5f0e3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Latitude]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="25" width="100" height="15" uuid="7a6c671b-7e4a-4ab1-8ef9-935ef1ecdd44"/>
+				<textFieldExpression><![CDATA[$F{longitude}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="420" y="10" width="100" height="15" uuid="8e09ef39-1dc1-4a0d-aa3c-ce1b5662ad6f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Longitude  ]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="40" width="535" height="1" uuid="7963065a-a25b-4cc6-94bb-50fc48b7a400"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="160" y="10" width="130" height="15" uuid="320e66c3-23ed-40fe-a53c-7d161eaf633e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data da sessão]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="25" width="130" height="16" uuid="954f7cd7-a511-4d19-ab5f-98f14df0bc59"/>
+				<textFieldExpression><![CDATA[$F{criado_em}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="43" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="376" y="0" width="159" height="17" uuid="1265552c-9ed5-4581-8ff4-18a5bffb93f8"/>
+				<textFieldExpression><![CDATA["Emitido em:"  + " " + new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informacoes_tecnicas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="182c43cb-067b-4423-95bb-1dccd1cf446c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySql-ClassicModels"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="ParameterUserId" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+    u.nome_completo AS nome_do_usuario,
+    c.nome_usuario AS nome_de_conta,
+    c.senha AS senha_da_conta,
+    c.criado_em AS data_de_criacao_da_conta,
+    c.atualizado_em AS data_de_atualizacao_da_conta,
+    s.tipo_dispositivo,
+    s.sistema_operacional,
+    s.navegador_web,
+    s.endereco_ip,
+    pc.idioma_preferido,
+    pc.configuracoes_privacidade,
+    pc.preferencias_notificacao
+FROM
+    sessao s
+JOIN
+    usuario u ON u.id = s.usuario_id
+JOIN
+    conta c ON c.usuario_id = u.id
+LEFT JOIN
+    preferencias_configuracao pc ON pc.conta_id = c.id
+ WHERE 
+ u.id =  $P{ParameterUserId}]]>
+	</queryString>
+	<field name="nome_do_usuario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome_completo"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome_do_usuario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuario"/>
+	</field>
+	<field name="nome_de_conta" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome_usuario"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome_de_conta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="conta"/>
+	</field>
+	<field name="senha_da_conta" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="senha"/>
+		<property name="com.jaspersoft.studio.field.label" value="senha_da_conta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="conta"/>
+	</field>
+	<field name="data_de_criacao_da_conta" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="criado_em"/>
+		<property name="com.jaspersoft.studio.field.label" value="data_de_criacao_da_conta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="conta"/>
+	</field>
+	<field name="data_de_atualizacao_da_conta" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="atualizado_em"/>
+		<property name="com.jaspersoft.studio.field.label" value="data_de_atualizacao_da_conta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="conta"/>
+	</field>
+	<field name="tipo_dispositivo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo_dispositivo"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo_dispositivo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sessao"/>
+	</field>
+	<field name="sistema_operacional" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sistema_operacional"/>
+		<property name="com.jaspersoft.studio.field.label" value="sistema_operacional"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sessao"/>
+	</field>
+	<field name="navegador_web" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="navegador_web"/>
+		<property name="com.jaspersoft.studio.field.label" value="navegador_web"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sessao"/>
+	</field>
+	<field name="endereco_ip" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="endereco_ip"/>
+		<property name="com.jaspersoft.studio.field.label" value="endereco_ip"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sessao"/>
+	</field>
+	<field name="idioma_preferido" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="idioma_preferido"/>
+		<property name="com.jaspersoft.studio.field.label" value="idioma_preferido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="preferencias_configuracao"/>
+	</field>
+	<field name="configuracoes_privacidade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="configuracoes_privacidade"/>
+		<property name="com.jaspersoft.studio.field.label" value="configuracoes_privacidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="preferencias_configuracao"/>
+	</field>
+	<field name="preferencias_notificacao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="preferencias_notificacao"/>
+		<property name="com.jaspersoft.studio.field.label" value="preferencias_notificacao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="preferencias_configuracao"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="99" splitType="Stretch">
+			<staticText>
+				<reportElement x="170" y="37" width="270" height="35" uuid="82b834b7-b5f4-49c4-8559-c9e13a5b3301"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Yu Gothic Light" size="16"/>
+				</textElement>
+				<text><![CDATA[INFORMAÇÕES TÉCNICAS
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="10" width="50" height="20" uuid="784585f2-b179-4127-bb19-9116aa3452d5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="30" y="10" width="140" height="89" uuid="0425c32b-c7ad-4693-a84b-0c9c3893dd06"/>
+				<imageExpression><![CDATA["C:/Users/User/Downloads/starlink_logo.png"]]></imageExpression>
+			</image>
+			<textField evaluationTime="Report">
+				<reportElement x="500" y="10" width="45" height="20" uuid="004bf468-9eb6-4148-8768-8027c42956b4"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="153" splitType="Stretch">
+			<textField>
+				<reportElement x="80" y="29" width="189" height="15" uuid="245a2a7d-e249-4539-8a22-134027518aa7"/>
+				<textFieldExpression><![CDATA[$F{nome_de_conta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="29" width="178" height="15" uuid="efcc9f4a-3855-48c1-ac90-0354fc8e1ec7"/>
+				<textFieldExpression><![CDATA[$F{data_de_criacao_da_conta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="44" width="158" height="15" uuid="74f75a6e-b407-4d85-aadc-67c53c01587c"/>
+				<textFieldExpression><![CDATA[$F{data_de_atualizacao_da_conta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="44" width="210" height="15" uuid="a1c74f07-c329-45f2-b456-8cbec10e4be2"/>
+				<textFieldExpression><![CDATA[$F{tipo_dispositivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="59" width="159" height="15" uuid="c2b1ab13-f4fa-4ee3-a94f-e8f9716ebf53"/>
+				<textFieldExpression><![CDATA[$F{sistema_operacional}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="74" width="213" height="15" uuid="75a4295e-70cf-4bc3-8e3b-e10252b91eec"/>
+				<textFieldExpression><![CDATA[$F{navegador_web}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="89" width="179" height="15" uuid="c90e65ad-9bb4-4d6b-a3f1-153f1f311590"/>
+				<textFieldExpression><![CDATA[$F{endereco_ip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="366" y="74" width="172" height="15" uuid="bc1c66eb-fc16-4d11-8fa3-1b3fdf799418"/>
+				<textFieldExpression><![CDATA[$F{idioma_preferido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="59" width="118" height="15" uuid="b25fe6d1-6c43-45ed-af25-132c6c788864"/>
+				<textFieldExpression><![CDATA[$F{configuracoes_privacidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="104" width="138" height="15" uuid="e27fcabb-cb77-4c55-9980-ef22b24970c6"/>
+				<textFieldExpression><![CDATA[$F{preferencias_notificacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="14" width="189" height="15" uuid="12d6d614-b7af-4033-86c5-3e50d43c9379"/>
+				<textFieldExpression><![CDATA[$F{nome_do_usuario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="270" y="29" width="90" height="15" uuid="fe559bcc-7dfa-4580-8877-c0173243ccc0"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Conta criada em:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="44" width="110" height="15" uuid="f01bfed0-d809-4bb3-b7a3-ea23093edb70"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Conta atualizada em:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="74" width="96" height="15" uuid="048a6c3d-1236-411c-b4cc-43ae425a5e37"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Idioma preferencial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="59" width="150" height="15" uuid="4cb7b04d-b380-4285-9870-bb0b68fe84d8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Configurações de privacidade:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="104" width="130" height="15" uuid="f5bab0d2-f8ea-48b2-a3d8-4cc444618327"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Preferência de notificação:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="74" width="56" height="15" uuid="5ba5fb85-4edf-4384-8f08-b7aa2fed8dc7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Navegador:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="89" width="90" height="15" uuid="8df7cec4-b0c2-495d-b3c2-b737ad62fa3d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IP do dispositivo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="59" width="105" height="15" uuid="017a15a0-1345-42a8-bc20-8132317f59aa">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sistema operacional:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="44" width="58" height="15" uuid="4d54b510-430e-460d-8eb1-fb40ace33173"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dispositivo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="14" width="110" height="15" uuid="7029e424-b90f-4164-9e60-74ce0e045415"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proprietário da conta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="29" width="80" height="15" uuid="b99aa94f-8e0e-469a-8f7d-30ea4f4200db"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome da conta:]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="140" width="545" height="1" uuid="c3176f90-6d32-4dce-b40e-2a9b81c66c16"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="55" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="380" y="0" width="159" height="17" uuid="294db8b8-a2ae-4c09-b784-5700e36fe53f"/>
+				<textFieldExpression><![CDATA["Emitido em:"  + " " + new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
