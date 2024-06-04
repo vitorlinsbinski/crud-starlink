@@ -2,6 +2,7 @@ package services;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 import database.ConnectionFactory;
 import exceptions.ResourceNotFoundException;
@@ -43,6 +44,8 @@ public class UpdateProfileService {
 	                throw new UserAlreadyExistsExepction("E-mail já existe.");
 	            }
 	        }
+	        
+	        account.setUpdatedAt(LocalDateTime.now());
 	                    
 	        userDAO.updateUser(user);
 	        accountDAO.updateAccount(account);

@@ -131,7 +131,7 @@ public class AccountDAO implements AccountRepository {
 
 	@Override
 	public void updateAccount(AccountEntity account) {
-		String sql = "UPDATE conta SET nome_usuario = ?, senha = ?, usuario_id = ? WHERE id = ?";
+		String sql = "UPDATE conta SET nome_usuario = ?, senha = ?, usuario_id = ?, atualizado_em = ? WHERE id = ?";
 		
 		try {
 			PreparedStatement ps = this.connection.prepareStatement(sql);
@@ -139,7 +139,11 @@ public class AccountDAO implements AccountRepository {
 			ps.setString(1, account.getUsername());
 			ps.setString(2, account.getPassword());
 			ps.setInt(3, account.getUserId());
-			ps.setInt(4, account.getId());
+			
+			Timestamp updatedAtTimestamp = Timestamp.valueOf(account.getUpdatedAt());
+			
+	        ps.setTimestamp(4, updatedAtTimestamp);
+	        ps.setInt(5, account.getId());
 			
 			int rowsAffected = ps.executeUpdate();
 			

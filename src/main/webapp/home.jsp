@@ -9,9 +9,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Dashboard</title>
+<title>Starlink - Home</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="./styles/styles.css" />
+<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
 <script>
 	function confirmLogout(event) {
 		event.preventDefault();
@@ -56,24 +57,25 @@
 		<ul class="w-full mt-4 flex flex-col gap-4">
 			<li
 				class="w-full h-[50px] bg-neutral-900 border border-neutral-700 px-4 hover:bg-neutral-800 transition-all cursor-pointer flex items-center">
-				<a href="get-online-navigation-report" class="flex items-center justify-between w-full">
+				<a href="get-report?fileName=navegacao_online"
+				class="flex items-center justify-between w-full">
 					<div class="flex items-center gap-3">
 						<div>
 							<img src="./images/wifi-icon.svg" alt="wifi icon" />
 						</div>
-
 						<span class="text-base text-slate-300">Navegação online</span>
 					</div>
-
 					<div>
 						<img src="./images/arrow-right-icon.svg" alt="arrow right icon" />
 					</div>
 			</a>
 			</li>
 
+
 			<li
 				class="w-full h-[50px] bg-neutral-900 border border-neutral-700 px-4 hover:bg-neutral-800 transition-all cursor-pointer flex items-center">
-				<a href="" class="flex items-center justify-between w-full">
+				<a href="get-report?fileName=localizacao"
+				class="flex items-center justify-between w-full">
 					<div class="flex items-center gap-3">
 						<div>
 							<img src="./images/pin-icon.svg" alt="pin icon" />
@@ -91,7 +93,8 @@
 
 			<li
 				class="w-full h-[50px] bg-neutral-900 border border-neutral-700 px-4 hover:bg-neutral-800 transition-all cursor-pointer flex items-center">
-				<a href="" class="flex items-center justify-between w-full">
+				<a href="get-report?fileName=informacoes_pessoais"
+				class="flex items-center justify-between w-full">
 					<div class="flex items-center gap-3">
 						<div>
 							<img src="./images/group-iconm.svg" alt="group icon" />
@@ -108,7 +111,8 @@
 
 			<li
 				class="w-full h-[50px] bg-neutral-900 border border-neutral-700 px-4 hover:bg-neutral-800 transition-all cursor-pointer flex items-center">
-				<a href="" class="flex items-center justify-between w-full">
+				<a href="get-report?fileName=pagamentos_transacoes"
+				class="flex items-center justify-between w-full">
 					<div class="flex items-center gap-3">
 						<div>
 							<img src="./images/credit-card-icon.svg" alt="credit-card icon" />
@@ -126,7 +130,8 @@
 
 			<li
 				class="w-full h-[50px] bg-neutral-900 border border-neutral-700 px-4 hover:bg-neutral-800 transition-all cursor-pointer flex items-center">
-				<a href="" class="flex items-center justify-between w-full">
+				<a href="get-report?fileName=informacoes_tecnicas"
+				class="flex items-center justify-between w-full">
 					<div class="flex items-center gap-3">
 						<div>
 							<img src="./images/tool-icon.svg" alt="tool icon" />

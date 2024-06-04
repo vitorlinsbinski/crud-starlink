@@ -1,1 +1,27 @@
-@charset "ISO-8859-1";
+/* styles.css ou styles-profile.css */
+
+/* Esconder o ícone padrão do input de data */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    display: none;
+}
+
+input[type="date"] {
+    position: relative;
+    color: white; /* Cor do texto para branco */
+}
+
+/* Adicionar um ícone personalizado */
+input[type="date"]::before {
+    content: url('./images/calendar-icon.svg'); /* Caminho para seu ícone de calendário personalizado */
+    position: absolute;
+    right: 15px; /* Ajuste conforme necessário */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Ajuste de padding para evitar sobreposição com o ícone */
+input[type="date"] {
+    padding-right: 30px; /* Ajuste conforme necessário */
+}

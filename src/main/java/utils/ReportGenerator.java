@@ -1,41 +1,66 @@
 package utils;
 
-import java.io.OutputStream;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
+import models.Account.AccountEntity;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRExporter;
-import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 public class ReportGenerator {
-	private String fileName;
-	private Map<String, Object> params;
-	private Connection conneciton;
-	
-	public ReportGenerator(String fileName, Map<String, Object> params, Connection conneciton) {
-		this.fileName = fileName;
-		this.params = params;
-		this.conneciton = conneciton;
-	}
-	
-	public void generatePDFOutputStream(OutputStream outputStream) {
-		try {
-			System.out.println("fileName: " + this.fileName);
-			JasperPrint jasperPrint = JasperFillManager.fillReport(this.fileName, this.params, this.conneciton);
-			
-			JRExporter exporter = new JRPdfExporter();
-			
-			exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-			exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, outputStream);
-			
-			exporter.exportReport();
-		} catch(JRException e) {
-			throw new RuntimeException(e);
-		}
-	}
+
+    public void generateReport(String fileName, AccountEntity account, ServletContext context, HttpServletResponse response)
+            throws JRException, SQLException, IOException {
+        response.setContentType("application/pdf");
+
+        ServletOutputStream servletOutputStream = response.getOutputStream();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        FileInputStream fis = null;
+        BufferedInputStream bufferedInputStream = null;
+
+        try {
+            Connection connection = new database.ConnectionFactory().getConnection();
+
+            String reportLocation = context.getRealPath("WEB-INF");
+
+            fis = new FileInputStream(reportLocation + "/jasper/" + fileName);
+            bufferedInputStream = new BufferedInputStream(fis);
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("ParameterUserId", account.getUserId());
+
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(bufferedInputStream);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, connection);
+            JasperExportManager.exportReportToPdfStream(jasperPrint, baos);
+
+            response.setContentLength(baos.size());
+            baos.writeTo(servletOutputStream);
+        } finally {
+            if (fis != null) {
+                fis.close();
+            }
+            if (bufferedInputStream != null) {
+                bufferedInputStream.close();
+            }
+            servletOutputStream.flush();
+            servletOutputStream.close();
+            baos.close();
+        }
+    }
 }
+
