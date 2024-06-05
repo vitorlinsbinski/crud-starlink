@@ -42,7 +42,7 @@ public class ReportGenerator {
             bufferedInputStream = new BufferedInputStream(fis);
 
             Map<String, Object> map = new HashMap<>();
-            map.put("ParameterUserId", account.getUserId());
+            map.put("UserId", account.getUserId());
 
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(bufferedInputStream);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, connection);
