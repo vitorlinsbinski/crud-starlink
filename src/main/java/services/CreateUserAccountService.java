@@ -3,10 +3,10 @@ package services;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-//Classe responsavel por criar e fornecer conexões com o banco de dados.//
+//Classe responsavel por criar e fornecer conexões com o banco de dados://
 import database.ConnectionFactory;
 import exceptions.UserAlreadyExistsExepction;
-//Classe responsável por interagir com a tabela de contas "Account" no banco de dados. Encapsula toda a lógica de acesso a dados e fornece métodos para realizar operações CRUD (create, read, update, delete) na tabela de contas.//
+//Classe responsável por interagir com a tabela de contas "Account" no banco de dados. Encapsula toda a lógica de acesso a dados e fornece métodos para realizar operações CRUD (create, read, update, delete) na tabela de contas://
 import models.Account.AccountDAO;
 import models.Account.AccountEntity;
 import models.User.UserDAO;
